@@ -2,7 +2,7 @@ query_writer_instructions="""Your goal is to generate targeted web search query.
 
 The query will gather information related to a specific topic.
 
-The `query`, `aspect` and `rationale` must be in Simplified Chinese.
+The `query`, `aspect` and `rationale` must be in {language}.
 
 Topic:
 {research_topic}
@@ -44,7 +44,7 @@ CRITICAL REQUIREMENTS:
 - DO NOT add a References or Works Cited section
 - DO NOT use any XML-style tags like <think> or <answer>
 - Begin directly with the summary text without any tags, prefixes, or meta-commentary
-- Always write in Simplified Chinese.
+- Always write in {language}.
 
 ADDITIONAL REQUIREMENTS:
 {additional_requirements} 
@@ -71,6 +71,6 @@ Example output:
     "follow_up_query": "What are typical performance benchmarks and metrics used to evaluate [specific technology]?"
 }}
 
-The content of `knowledge_gap` and `follow_up_query` must be in Simplified Chinese.
+The content of `knowledge_gap` and `follow_up_query` must be in {language}.
 
 Provide your analysis in JSON format:"""

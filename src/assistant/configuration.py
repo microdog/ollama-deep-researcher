@@ -19,6 +19,7 @@ class Configuration:
     max_web_research_loops: int = 3
     model_provider: str = "ollama"
     model_name: str = "llama3.2"
+    language: str = "English"
     search_api: SearchAPI = SearchAPI.TAVILY  # Default to TAVILY
 
     @classmethod

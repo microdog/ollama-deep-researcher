@@ -48,12 +48,12 @@ def llm_model(conf: Configuration, temperature: int = 0, json_mode: bool = False
 # Nodes   
 def generate_query(state: SummaryState, config: RunnableConfig):
     """ Generate a query for web search """
+    configurable = Configuration.from_runnable_config(config)
     
     # Format the prompt
-    query_writer_instructions_formatted = query_writer_instructions.format(research_topic=state.research_topic)
+    query_writer_instructions_formatted = query_writer_instructions.format(research_topic=state.research_topic, language=configurable.language)
 
     # Generate a query
-    configurable = Configuration.from_runnable_config(config)
     llm_json_mode = llm_model(configurable, json_mode=True)
     result = llm_json_mode.invoke(
         [SystemMessage(content=query_writer_instructions_formatted),
@@ -115,7 +115,7 @@ def summarize_sources(state: SummaryState, config: RunnableConfig):
     configurable = Configuration.from_runnable_config(config)
     llm = llm_model(configurable)
     result = llm.invoke(
-        [SystemMessage(content=summarizer_instructions.format(additional_requirements=state.additional_requirements)),
+        [SystemMessage(content=summarizer_instructions.format(additional_requirements=state.additional_requirements, language=configurable.language)),
         HumanMessage(content=human_message_content)]
     )
     print(result)
@@ -138,7 +138,7 @@ def reflect_on_summary(state: SummaryState, config: RunnableConfig):
     configurable = Configuration.from_runnable_config(config)
     llm_json_mode = llm_model(configurable, json_mode=True)
     result = llm_json_mode.invoke(
-        [SystemMessage(content=reflection_instructions.format(research_topic=state.research_topic, additional_requirements=state.additional_requirements)),
+        [SystemMessage(content=reflection_instructions.format(research_topic=state.research_topic, additional_requirements=state.additional_requirements, language=configurable.language)),
         HumanMessage(content=f"Identify a knowledge gap and generate a follow-up web search query based on our existing knowledge: {state.running_summary}")]
     )   
     follow_up_query = json.loads(result.content)
