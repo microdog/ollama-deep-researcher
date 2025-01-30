@@ -5,6 +5,7 @@ from typing_extensions import TypedDict, Annotated
 @dataclass(kw_only=True)
 class SummaryState:
     research_topic: str = field(default=None) # Report topic     
+    additional_requirements: str = field(default=None)
     search_query: str = field(default=None) # Search query
     web_research_results: Annotated[list, operator.add] = field(default_factory=list) 
     sources_gathered: Annotated[list, operator.add] = field(default_factory=list) 
@@ -14,6 +15,7 @@ class SummaryState:
 @dataclass(kw_only=True)
 class SummaryStateInput:
     research_topic: str = field(default=None) # Report topic     
+    additional_requirements: str = field(default=None) # Additional requirements
 
 @dataclass(kw_only=True)
 class SummaryStateOutput:

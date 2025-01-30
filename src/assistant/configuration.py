@@ -15,8 +15,10 @@ class SearchAPI(Enum):
 class Configuration:
     """The configurable fields for the research assistant."""
     max_search_results: int = 10
+    max_tokens_per_source: int = 2000
     max_web_research_loops: int = 3
-    local_llm: str = "llama3.2"
+    model_provider: str = "ollama"
+    model_name: str = "llama3.2"
     search_api: SearchAPI = SearchAPI.TAVILY  # Default to TAVILY
 
     @classmethod
