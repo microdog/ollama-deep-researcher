@@ -2,6 +2,8 @@ query_writer_instructions="""Your goal is to generate targeted web search query.
 
 The query will gather information related to a specific topic.
 
+You should always respond in Simplified Chinese.
+
 Topic:
 {research_topic}
 
@@ -14,6 +16,8 @@ Return your query as a JSON object:
 """
 
 summarizer_instructions="""Your goal is to generate a high-quality summary of the web search results.
+
+You should always respond in Simplified Chinese.
 
 When EXTENDING an existing summary:
 1. Seamlessly integrate new information without repeating what's already covered
@@ -44,6 +48,8 @@ CRITICAL REQUIREMENTS:
 """
 
 reflection_instructions = """You are an expert research assistant analyzing a summary about {research_topic}.
+
+You should always respond in Simplified Chinese.
 
 Your tasks:
 1. Identify knowledge gaps or areas that need deeper exploration
