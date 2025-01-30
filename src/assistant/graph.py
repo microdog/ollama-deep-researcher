@@ -46,7 +46,7 @@ def web_research(state: SummaryState, config: RunnableConfig):
 
     # Search the web
     if search_api == "tavily":
-        search_results = tavily_search(state.search_query, include_raw_content=True, max_results=1)
+        search_results = tavily_search(state.search_query, include_raw_content=True, max_results=configurable.max_search_results)
         search_str = deduplicate_and_format_sources(search_results, max_tokens_per_source=1000, include_raw_content=True)
     elif search_api == "perplexity":
         search_results = perplexity_search(state.search_query, state.research_loop_count)

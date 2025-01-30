@@ -14,6 +14,7 @@ class SearchAPI(Enum):
 @dataclass(kw_only=True)
 class Configuration:
     """The configurable fields for the research assistant."""
+    max_search_results: int = 10
     max_web_research_loops: int = 3
     local_llm: str = "llama3.2"
     search_api: SearchAPI = SearchAPI.TAVILY  # Default to TAVILY
