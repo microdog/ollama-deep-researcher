@@ -57,10 +57,8 @@ def deduplicate_and_format_sources(search_response, max_tokens_per_source, inclu
                 print(f"Warning: No raw_content found for source {source['url']}")
             else:
                 raw_content = ftfy.fix_encoding(raw_content)
-            # Remove duplicate newlines
-            raw_content = re.sub(r"[\r\n]+", "\n", raw_content)
-            # Remove redundant blank characters
-            raw_content = re.sub(r"\s+", " ", raw_content)
+            # Normalize all whitespace and newlines
+            raw_content = re.sub(r'\s+', ' ', raw_content)
             if len(raw_content) > char_limit:
                 raw_content = raw_content[:char_limit] + "... [truncated]"
             formatted_text += f"Full source content limited to {max_tokens_per_source} tokens: {raw_content}\n\n"
